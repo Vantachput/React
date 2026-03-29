@@ -5,7 +5,9 @@ const PetCard = ({ pet, onToggleLike }) => {
   return (
     <>
       <div className={`pet-card ${pet.isLiked ? 'liked-card' : ''}`}>
-        <img src={pet.photo} alt={pet.name} className="pet-photo" />
+        <div className="pet-photo-container">
+          <img src={pet.photo} alt={pet.name} className="pet-photo" />
+        </div>
         <div className="pet-info">
           <h3 className="pet-name">{pet.name}</h3>
           <div className="pet-details">

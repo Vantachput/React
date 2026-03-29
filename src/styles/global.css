@@ -91,6 +91,7 @@ body {
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
+  height: 100%; /* Уніфікуємо висоту карток у сітці */
 }
 
 .pet-card:hover {
@@ -98,10 +99,20 @@ body {
   box-shadow: var(--shadow-hover);
 }
 
-.pet-photo {
+.pet-photo-container {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  background-color: #f0f0f0; /* Світлий фон для порожніх місць навколо фото */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pet-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Тепер картинка вміщується ПОВНІСТЮ без обрізання */
 }
 
 .pet-info {
@@ -197,4 +208,77 @@ body {
 .empty-message h3 {
   color: var(--text-color);
   margin-bottom: 0.5rem;
+}
+
+/* Add Pet Form */
+.add-pet-form {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.add-pet-form h3 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 0.5rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
