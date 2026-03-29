@@ -1,23 +1,14 @@
 import React from 'react';
 import PetCard from './PetCard';
 
-// Статичні дані для відображення
-const petsData = [
-  { id: 1, name: 'Мурзік', species: 'Кіт', age: 3, photo: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400&h=300' },
-  { id: 2, name: 'Бобік', species: 'Собака', age: 5, photo: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=400&h=300' },
-  { id: 3, name: 'Кеша', species: 'Папуга', age: 1, photo: 'https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=400&h=300' },
-  { id: 4, name: 'Сніжок', species: 'Кролик', age: 2, photo: 'https://images.pexels.com/photos/4588052/pexels-photo-4588052.jpeg?auto=compress&cs=tinysrgb&w=400&h=300' },
-  { id: 5, name: 'Чарлі', species: 'Пес', age: 4, photo: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=400&h=300' },
-  { id: 6, name: 'Сімба', species: 'Кіт', age: 2, photo: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&q=80&w=400&h=300' },
-];
-
-const PetGallery = () => {
+const PetGallery = ({ pets }) => {
   return (
     <section className="gallery-section">
       <h2 className="page-title">Наші улюбленці</h2>
       <div className="gallery-grid">
         {/* Використання map() для рендеру списку карточок */}
-        {petsData.map(pet => (
+        {/* Передача даних вниз по дереву: рівень 2 */}
+        {pets.map(pet => (
           <PetCard key={pet.id} pet={pet} />
         ))}
       </div>

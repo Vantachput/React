@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const PetCard = ({ pet }) => {
-  const [likes, setLikes] = useState(0);
-
-  const handleLike = () => {
-    setLikes(likes + 1);
-  };
-
   // Використовуємо фрагменти <>...</> згідно з вимогами
   return (
     <>
@@ -18,11 +12,8 @@ const PetCard = ({ pet }) => {
             <p><strong>Вид:</strong> {pet.species}</p>
             <p><strong>Вік:</strong> {pet.age} {pet.age === 1 ? 'рік' : 'роки'}</p>
           </div>
-          <button 
-            className={`like-btn ${likes > 0 ? 'liked' : ''}`} 
-            onClick={handleLike}
-          >
-            {likes > 0 ? `❤️ Спасибі! (${likes})` : '🤍 Лайк'}
+          <button className="like-btn">
+            🤍 Лайк
           </button>
         </div>
       </div>
