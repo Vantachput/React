@@ -1,16 +1,83 @@
-# React + Vite
+# 🐾 Pet Gallery — React Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Проєкт «Галерея улюбленців» — це сучасний веб-застосунок на базі **React**, створений для керування колекцією домашніх тварин. Застосунок дозволяє переглядати, фільтрувати, додавати нових улюбленців, а також взаємодіяти з даними через зовнішні API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Основні можливості
 
-## React Compiler
+- **Керування колекцією:** Додавання нових тваринок через інтерактивну форму з валідацією.
+- **Розумна фільтрація:** Сортування за видом (Коти, Собаки) та окрема вкладка для «Улюблених».
+- **Збереження даних:** Інтеграція з `LocalStorage` — ваші дані не зникнуть після перезавантаження сторінки.
+- **Динамічні деталі:** Окрема сторінка для кожного улюбленця з детальним описом та великим фото.
+- **Спільнота (API):** Асинхронне завантаження даних про власників тварин із зовнішнього сервера (JSONPlaceholder).
+- **Сучасна навігація:** Використання `React Router v6` для миттєвих переходів без перезавантаження браузера.
+- **404 Handling:** Власна сторінка помилки для неіснуючих маршрутів.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Технологічний стек
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Ядро:** React 18, Vite.
+- **Маршрутизація:** React Router v6 (Nested Routes, Dynamic Routes, useParams, useNavigate).
+- **Стилізація:** Vanilla CSS3 з використанням CSS-змінних для гнучкого дизайну.
+- **Робота з даними:** Fetch API, Promises, Async/Await.
+- **State Management:** useState, useEffect (Lifting State Up, Lazy Initialization).
+
+---
+
+## 📂 Структура проєкту
+
+```text
+src/
+├── components/          # Компоненти інтерфейсу (Header, Footer, PetCard, Layout)
+├── pages/               # Сторінки застосунку (Home, PetList, PetDetails, About, NotFound)
+├── styles/              # CSS-файли (Глобальні стилі та налаштування роутера)
+├── App.jsx              # Головний компонент із бізнес-логікою
+└── main.jsx             # Точка входу та налаштування BrowserRouter
+```
+
+---
+
+## 📦 Встановлення та запуск
+
+1. **Клонувати репозиторій:**
+   ```bash
+   git clone <url-репозиторію>
+   ```
+
+2. **Встановити залежності:**
+   ```bash
+   npm install
+   ```
+
+3. **Запустити в режимі розробки:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Відкрити в браузері:**
+   За замовчуванням: `http://localhost:5173/` (або `5174`).
+
+---
+
+## 📝 Виконані завдання (Лабораторний практикум)
+
+- [x] Створення компонентної архітектури та передача Props.
+- [x] Робота зі станом (`useState`) та обробка івентів.
+- [x] Реалізація фільтрації та умовного рендерингу.
+- [x] Робота з керованими формами та валідацією.
+- [x] Автоматичне збереження в `LocalStorage` (Persistence).
+- [x] Асинхронне завантаження даних через `fetch` (Loading/Error/Success states).
+- [x] Налаштування клієнтської маршрутизації (React Router).
+- [x] Реалізація Layout, динамічних маршрутів та редиректів.
+
+---
+
+## 🎨 Дизайн та UX
+
+Застосунок має чистий, адаптивний дизайн з акцентом на зручність користувача (UX). Використано приємну колірну палітру, мікро-анімації при наведенні на картки та чітку систему навігації з підсвічуванням активних розділів.
+
+---
+
+*Розроблено з любов’ю до React та тваринок!* 🐾✨
