@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PetGallery from './components/PetGallery';
 import AddPetForm from './components/AddPetForm';
+import PetOwnersAPI from './components/PetOwnersAPI';
 
 // Джерело даних (масив об’єктів) з початковим станом лайків
 const initialPetsData = [
@@ -16,8 +17,6 @@ const initialPetsData = [
 
 function App() {
   // 1. Ініціалізація стану з перевіркою localStorage (lazy initialization)
-  // Це гарантує, що початковий стан БУДЕ або з пам'яті, або дефолтним, 
-  // і перший рендер не затре дані в сховищі.
   const [pets, setPets] = useState(() => {
     const savedPets = localStorage.getItem('pet-gallery-data');
     if (savedPets) {
@@ -46,7 +45,6 @@ function App() {
     );
   };
 
-  // Функція для додавання масиву без прямих мутацій
   const addPet = (newPet) => {
     setPets(prevPets => [...prevPets, newPet]);
   };
@@ -69,11 +67,13 @@ function App() {
         onFilterChange={setFilter}
       />
       <main className="app-main">
-        {/* Форма додавання відображається тільки в режимі "Всі", 
-            щоб не плутати користувача при фільтрації */}
         {filter === 'all' && <AddPetForm onAddPet={addPet} />}
         
         <PetGallery pets={filteredPets} onToggleLike={toggleLike} />
+
+        {/* Секція з даними із відкритого API */}
+        <hr className="section-divider" />
+        <PetOwnersAPI />
       </main>
       <Footer />
     </>
