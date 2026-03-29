@@ -178,3 +178,23 @@ body {
   border: 2px solid var(--secondary-color);
   box-shadow: 0 0 10px rgba(255, 206, 84, 0.5);
 }
+
+.filter-btn.active {
+  background: white;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  color: var(--text-light);
+}
+
+.empty-message h3 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}

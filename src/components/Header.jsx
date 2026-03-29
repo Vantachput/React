@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = ({ totalLikes }) => {
+const Header = ({ totalLikes, currentFilter, onFilterChange }) => {
   return (
     <header className="app-header">
       <div className="header-title-container">
@@ -9,11 +9,32 @@ const Header = ({ totalLikes }) => {
         <span className="likes-counter">Улюблені: {totalLikes} 🤍</span>
       </div>
       
-      {/* Навігація/Фільтрація (статична, як вимагалося) */}
+      {/* Панель фільтрів з перемикачами режиму відображення */}
       <nav className="nav-filters">
-        <button className="filter-btn">Всі</button>
-        <button className="filter-btn">Коти</button>
-        <button className="filter-btn">Собаки</button>
+        <button 
+          className={`filter-btn ${currentFilter === 'all' ? 'active' : ''}`}
+          onClick={() => onFilterChange('all')}
+        >
+          Всі
+        </button>
+        <button 
+          className={`filter-btn ${currentFilter === 'liked' ? 'active' : ''}`}
+          onClick={() => onFilterChange('liked')}
+        >
+          Улюблені
+        </button>
+        <button 
+          className={`filter-btn ${currentFilter === 'cats' ? 'active' : ''}`}
+          onClick={() => onFilterChange('cats')}
+        >
+          Коти
+        </button>
+        <button 
+          className={`filter-btn ${currentFilter === 'dogs' ? 'active' : ''}`}
+          onClick={() => onFilterChange('dogs')}
+        >
+          Собаки
+        </button>
       </nav>
     </header>
   );

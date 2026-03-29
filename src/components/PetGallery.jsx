@@ -5,17 +5,24 @@ const PetGallery = ({ pets, onToggleLike }) => {
   return (
     <section className="gallery-section">
       <h2 className="page-title">Наші улюбленці</h2>
-      <div className="gallery-grid">
-        {/* Використання map() для рендеру списку карточок */}
-        {/* Передача даних та колбека вниз по дереву: рівень 2 */}
-        {pets.map(pet => (
-          <PetCard 
-            key={pet.id} 
-            pet={pet} 
-            onToggleLike={onToggleLike} 
-          />
-        ))}
-      </div>
+      
+      {/* Умовний рендеринг: перевірка наявності елементів після фільтрації */}
+      {pets.length === 0 ? (
+        <div className="empty-message">
+          <h3>Тваринок не знайдено 😢</h3>
+          <p>Спробуйте змінити параметр фільтрації.</p>
+        </div>
+      ) : (
+        <div className="gallery-grid">
+          {pets.map(pet => (
+            <PetCard 
+              key={pet.id} 
+              pet={pet} 
+              onToggleLike={onToggleLike} 
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
