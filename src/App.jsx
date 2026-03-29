@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PetGallery from './components/PetGallery';
@@ -15,8 +15,28 @@ const initialPetsData = [
 ];
 
 function App() {
-  const [pets, setPets] = useState(initialPetsData);
+  // 1. Ініціалізація стану з перевіркою localStorage (lazy initialization)
+  // Це гарантує, що початковий стан БУДЕ або з пам'яті, або дефолтним, 
+  // і перший рендер не затре дані в сховищі.
+  const [pets, setPets] = useState(() => {
+    const savedPets = localStorage.getItem('pet-gallery-data');
+    if (savedPets) {
+      try {
+        return JSON.parse(savedPets);
+      } catch (error) {
+        console.error('Помилка парсингу localStorage:', error);
+        return initialPetsData;
+      }
+    }
+    return initialPetsData;
+  });
+
   const [filter, setFilter] = useState('all');
+
+  // 2. Автоматичне збереження масиву даних у localStorage при кожній зміні стану pets
+  useEffect(() => {
+    localStorage.setItem('pet-gallery-data', JSON.stringify(pets));
+  }, [pets]);
 
   const toggleLike = (id) => {
     setPets(prevPets => 
