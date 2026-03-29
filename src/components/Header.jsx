@@ -1,43 +1,44 @@
 import React from 'react';
+import { NavLink, Link } from 'react-router-dom';
 
-const Header = ({ totalLikes, currentFilter, onFilterChange }) => {
+const Header = ({ totalLikes }) => {
   return (
     <header className="app-header">
-      <div className="header-title-container">
-        <h2>🐾 Pet Gallery</h2>
-        {/* Відображення лічильника лайків, що реактивно змінюється */}
-        <span className="likes-counter">Улюблені: {totalLikes} 🤍</span>
-      </div>
+      <Link to="/" className="logo-link">
+        <h1>🐾 Pet Gallery</h1>
+      </Link>
       
-      {/* Панель фільтрів з перемикачами режиму відображення */}
-      <nav className="nav-filters">
-        <button 
-          className={`filter-btn ${currentFilter === 'all' ? 'active' : ''}`}
-          onClick={() => onFilterChange('all')}
+      {/* Навігація всередині шапки по центру */}
+      <nav className="nav-filters main-nav">
+        <NavLink 
+          to="/" 
+          end
+          className={({ isActive }) => `filter-btn ${isActive ? 'active' : ''}`}
         >
-          Всі
-        </button>
-        <button 
-          className={`filter-btn ${currentFilter === 'liked' ? 'active' : ''}`}
-          onClick={() => onFilterChange('liked')}
+          Головна
+        </NavLink>
+        <NavLink 
+          to="/pets" 
+          className={({ isActive }) => `filter-btn ${isActive ? 'active' : ''}`}
         >
-          Улюблені
-        </button>
-        <button 
-          className={`filter-btn ${currentFilter === 'cats' ? 'active' : ''}`}
-          onClick={() => onFilterChange('cats')}
+          Галерея 
+        </NavLink>
+        <NavLink 
+          to="/about" 
+          className={({ isActive }) => `filter-btn ${isActive ? 'active' : ''}`}
         >
-          Коти
-        </button>
-        <button 
-          className={`filter-btn ${currentFilter === 'dogs' ? 'active' : ''}`}
-          onClick={() => onFilterChange('dogs')}
-        >
-          Собаки
-        </button>
+          Про застосунок
+        </NavLink>
       </nav>
+
+      <div className="stats">
+        <span className="likes-counter">
+          ❤️ Улюбленців: {totalLikes}
+        </span>
+      </div>
     </header>
   );
 };
 
 export default Header;
+

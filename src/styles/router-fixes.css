@@ -1,0 +1,230 @@
+/* Повне виправлення Header: Одноповерховий макет */
+.app-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 2rem; /* Скромніші відступи */
+  display: flex;
+  flex-direction: row; /* Все в один рядок */
+  justify-content: space-between; /* Лого зліва, меню по центру, лічильник справа */
+  align-items: center; /* Рівняємо по вертикалі */
+  box-shadow: var(--shadow);
+  flex-wrap: wrap; /* Дозволяємо переноситися на малих екранах */
+  gap: 1rem;
+}
+
+.likes-counter {
+  font-weight: 700;
+  color: white; /* Білий текст на синьому фоні шапки */
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.2); /* Напівпрозора плашка замість "жахливого білого" */
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+}
+
+.logo-link {
+  text-decoration: none !important;
+  color: white;
+}
+
+/* Корекція фільтрів, щоб їх було видно */
+.nav-filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+a.filter-btn, .filter-btn {
+  background-color: rgba(255, 255, 255, 0.15); /* Видимий фон для кнопок */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  text-decoration: none !important; /* Надійно прибираємо стандартне підкреслення посилань */
+  display: inline-block;
+}
+
+.pet-list-filters {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.pet-list-filters .filter-btn {
+  background-color: #f1f2f6; /* Світло-сірий фон, щоб кнопку було ВИДНО */
+  color: var(--text-color);
+  border: 1px solid #dfe4ea;
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  text-decoration: none; /* Прибираємо стандартне підкреслення посилань */
+}
+
+.pet-list-filters .filter-btn:hover {
+  background-color: #e2e5e9;
+  border-color: #ced4da;
+}
+
+.pet-list-filters .filter-btn.active {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(93, 156, 236, 0.3);
+}
+
+/* Навігація в шапці (NavLink) залишається білою/прозорою на синьому фоні */
+.main-nav a,
+.main-nav .filter-btn {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-decoration: none !important; /* Жодного підкреслення */
+}
+
+.main-nav .filter-btn.active {
+  background-color: var(--secondary-color) !important;
+  color: #333 !important;
+  text-decoration: underline !important; /* Повертаємо підкреслення ЛИШЕ для активного стану */
+  text-underline-offset: 4px; /* Робимо невеликий відступ для краси */
+}
+
+/* Картка: Зміни для кнопок */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.details-link-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #f1f2f6;
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: all 0.2s;
+  flex: 1;
+  text-align: center;
+}
+
+.details-link-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.card-actions .like-btn {
+  margin-top: 0;
+  width: auto;
+  padding: 0.5rem 1rem;
+}
+
+/* Сторінка деталей */
+.pet-details-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.details-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .details-card {
+    flex-direction: row;
+  }
+}
+
+.details-photo-container {
+  flex: 1;
+  max-height: 400px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.details-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.details-info {
+  flex: 1;
+  padding: 2.5rem;
+}
+
+.details-info h1 {
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+  font-size: 2.5rem;
+}
+
+.details-description {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.details-description h3 {
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* Utilities */
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.inline-block { display: inline-block; }
+.text-center { text-align: center; }
+
+/* Home page / About page stats */
+.home-stats ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+.home-stats li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.welcome-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}

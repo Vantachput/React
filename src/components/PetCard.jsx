@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PetCard = ({ pet, onToggleLike }) => {
   // Використовуємо фрагменти <>...</> згідно з вимогами
@@ -11,16 +12,21 @@ const PetCard = ({ pet, onToggleLike }) => {
         <div className="pet-info">
           <h3 className="pet-name">{pet.name}</h3>
           <div className="pet-details">
-            <p><strong>Вид:</strong> {pet.species}</p>
-            <p><strong>Вік:</strong> {pet.age} {pet.age === 1 ? 'рік' : 'роки'}</p>
+            <span className="species">{pet.species}</span>
+            <span className="age">{pet.age} {pet.age === 1 ? 'рік' : 'років'}</span>
           </div>
-          {/* Кнопка викликає переданий через props колбек */}
-          <button 
-            className={`like-btn ${pet.isLiked ? 'liked' : ''}`}
-            onClick={() => onToggleLike(pet.id)}
-          >
-            {pet.isLiked ? '❤️ В улюблених' : '🤍 Додати в улюблені'}
-          </button>
+          <div className="card-actions mt-1">
+            <Link to={`/pet/${pet.id}`} className="details-link-btn">
+              Детальніше
+            </Link>
+            <button 
+              onClick={() => onToggleLike(pet.id)}
+              className={`like-btn ${pet.isLiked ? 'liked' : ''}`}
+              title={pet.isLiked ? "Видалити з улюблених" : "Додати в улюблені"}
+            >
+              {pet.isLiked ? '❤️' : '🤍'}
+            </button>
+          </div>
         </div>
       </div>
     </>

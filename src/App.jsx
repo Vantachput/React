@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import PetGallery from './components/PetGallery';
-import AddPetForm from './components/AddPetForm';
-import PetOwnersAPI from './components/PetOwnersAPI';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import PetList from './pages/PetList';
+import PetDetails from './pages/PetDetails';
+import About from './pages/About';
+import NotFound from './pages/NotFound';
 
 // Джерело даних (масив об’єктів) з початковим станом лайків
 const initialPetsData = [
@@ -30,8 +32,6 @@ function App() {
     return initialPetsData;
   });
 
-  const [filter, setFilter] = useState('all');
-
   // 2. Автоматичне збереження масиву даних у localStorage при кожній зміні стану pets
   useEffect(() => {
     localStorage.setItem('pet-gallery-data', JSON.stringify(pets));
@@ -51,32 +51,30 @@ function App() {
 
   const totalLikes = pets.filter(pet => pet.isLiked).length;
 
-  const filteredPets = pets.filter(pet => {
-    if (filter === 'all') return true;
-    if (filter === 'liked') return pet.isLiked;
-    if (filter === 'cats') return pet.species === 'Кіт';
-    if (filter === 'dogs') return pet.species === 'Собака';
-    return true;
-  });
-
   return (
-    <>
-      <Header 
-        totalLikes={totalLikes} 
-        currentFilter={filter}
-        onFilterChange={setFilter}
-      />
-      <main className="app-main">
-        {filter === 'all' && <AddPetForm onAddPet={addPet} />}
+    <Routes>
+      {/* Базовий Layout-компонент, який обгортає всі сторінки */}
+      <Route path="/" element={<Layout totalLikes={totalLikes} />}>
         
-        <PetGallery pets={filteredPets} onToggleLike={toggleLike} />
+        {/* Головна сторінка */}
+        <Route index element={<Home />} />
+        
+        {/* Сторінка списку улюбленців */}
+        <Route path="pets" element={<PetList pets={pets} addPet={addPet} toggleLike={toggleLike} />} />
+        
+        {/* Динамічний маршрут сторінки деталей. :id - змінний параметр */}
+        <Route path="pet/:id" element={<PetDetails pets={pets} toggleLike={toggleLike} />} />
+        
+        {/* Довідкова сторінка */}
+        <Route path="about" element={<About />} />
 
-        {/* Секція з даними із відкритого API */}
-        <hr className="section-divider" />
-        <PetOwnersAPI />
-      </main>
-      <Footer />
-    </>
+        {/* Додаткове завдання: редирект (застарілий URL animals кидає на pets) */}
+        <Route path="animals" element={<Navigate to="/pets" replace />} />
+        
+        {/* Сторінка "Не знайдено" (404 Not Found) */}
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 
