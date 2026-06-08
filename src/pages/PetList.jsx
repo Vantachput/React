@@ -3,7 +3,7 @@ import PetGallery from '../components/PetGallery';
 import AddPetForm from '../components/AddPetForm';
 import { useSettings } from '../context/SettingsContext';
 
-const PetList = ({ pets, addPet, toggleLike }) => {
+const PetList = ({ pets, addPet, toggleLike, deletePet }) => {
   const { t } = useSettings();
   // Фільтрація тепер живе на сторінці списку, де вона потрібна
   const [filter, setFilter] = useState('all');
@@ -40,7 +40,7 @@ const PetList = ({ pets, addPet, toggleLike }) => {
 
       {filter === 'all' && <AddPetForm onAddPet={addPet} />}
       
-      <PetGallery pets={filteredPets} onToggleLike={toggleLike} />
+      <PetGallery pets={filteredPets} onToggleLike={toggleLike} onDelete={deletePet} />
     </div>
   );
 };

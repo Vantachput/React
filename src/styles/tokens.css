@@ -1,0 +1,65 @@
+/* Design Tokens */
+
+:root {
+  /* Colors (Light Theme) */
+  --color-primary: #5d9cec;
+  --color-primary-hover: #4a89dc;
+  --color-secondary: #ffce54;
+  --color-secondary-hover: #f6bb42;
+  --color-danger: #fc6e51;
+  --color-danger-hover: #e9573f;
+  --color-success: #a0d468;
+  
+  --color-bg: #f5f7fa;
+  --color-card-bg: #ffffff;
+  --color-text: #333333;
+  --color-text-light: #777777;
+  --color-border: #e6e9ed;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Typography */
+  --font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-xxl: 2rem;
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* Borders */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-full: 9999px;
+  --border-width-thin: 1px;
+  --border-width-thick: 2px;
+}
+
+[data-theme='dark'] {
+  /* Colors (Dark Theme Overrides) */
+  --color-bg: #121212;
+  --color-card-bg: #1e1e1e;
+  --color-text: #e0e0e0;
+  --color-text-light: #a0a0a0;
+  --color-border: #2d2d2d;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}

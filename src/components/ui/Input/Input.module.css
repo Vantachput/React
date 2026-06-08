@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  font-family: var(--font-family);
+  width: 100%;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem var(--spacing-md);
+  font-size: var(--font-size-md);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.input::placeholder {
+  color: var(--color-text-light);
+  opacity: 0.7;
+}
+
+/* Visually clear focus state */
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(93, 156, 236, 0.25);
+}
+
+.error {
+  border-color: var(--color-danger);
+}
+.error:focus {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(252, 110, 81, 0.25);
+}
+
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+  margin-top: 2px;
+}
+
+.disabled {
+  opacity: 0.6;
+}
+.disabled .input {
+  cursor: not-allowed;
+  background-color: var(--color-bg);
+}

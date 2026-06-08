@@ -34,6 +34,12 @@ const Header = ({ totalLikes }) => {
         >
           {t('navAbout')}
         </NavLink>
+        <NavLink 
+          to="/ui-kit" 
+          className={({ isActive }) => `filter-btn ${isActive ? 'active' : ''}`}
+        >
+          UI Kit
+        </NavLink>
       </nav>
 
       <div className="stats" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
@@ -47,9 +53,25 @@ const Header = ({ totalLikes }) => {
           className="filter-btn theme-toggle-btn"
           title={theme === 'light' ? t('toggleThemeDark') : t('toggleThemeLight')}
           aria-label="Toggle theme"
-          style={{ padding: '0.5rem 0.8rem', fontSize: '1.1rem', cursor: 'pointer' }}
+          style={{ padding: '0.5rem 0.8rem', fontSize: '1.1rem', cursor: 'pointer', position: 'relative' }}
         >
           {theme === 'light' ? '🌙' : '☀️'}
+          {!localStorage.getItem('app-theme') && (
+            <span style={{ 
+              position: 'absolute', 
+              top: '-4px', 
+              right: '-4px', 
+              backgroundColor: 'var(--color-secondary)', 
+              color: '#333', 
+              fontSize: '8px', 
+              padding: '1px 3px', 
+              borderRadius: '4px',
+              fontWeight: 'bold',
+              lineHeight: '1'
+            }}>
+              AUTO
+            </span>
+          )}
         </button>
 
         {/* Кнопка перемикання мови */}

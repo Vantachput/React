@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import { SettingsProvider } from './context/SettingsContext'
 // Підключаємо наші глобальні стилі
+import './styles/tokens.css'
 import './styles/global.css'
 import './styles/router-fixes.css'
 import App from './App.jsx'

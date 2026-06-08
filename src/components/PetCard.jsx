@@ -1,39 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Card, CardHeader, CardBody, CardFooter, Button, Badge, Modal } from './ui';
 import { useSettings } from '../context/SettingsContext';
 
-const PetCard = ({ pet, onToggleLike }) => {
+export function PetCard({ pet, onToggleLike, onDelete }) {
   const { t, getSpeciesTranslation, getAgeText } = useSettings();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  // Використовуємо фрагменти <>...</> згідно з вимогами
+  const handleDeleteConfirm = () => {
+    onDelete(pet.id);
+    setIsDeleteModalOpen(false);
+  };
+
   return (
     <>
-      <div className={`pet-card ${pet.isLiked ? 'liked-card' : ''}`}>
-        <div className="pet-photo-container">
-          <img src={pet.photo} alt={pet.name} className="pet-photo" />
-        </div>
-        <div className="pet-info">
-          <h3 className="pet-name">{pet.name}</h3>
+      <Card className={pet.isLiked ? 'liked-card' : ''}>
+        <CardHeader style={{ padding: 0 }}>
+          <div className="pet-photo-container">
+            <img src={pet.photo} alt={pet.name} className="pet-photo" />
+          </div>
+        </CardHeader>
+        
+        <CardBody>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+            <h3 className="pet-name" style={{ margin: 0, fontSize: '1.25rem' }}>{pet.name}</h3>
+            <Badge variant={pet.isLiked ? 'success' : 'primary'}>
+              {getSpeciesTranslation(pet.species)}
+            </Badge>
+          </div>
           <div className="pet-details">
-            <span className="species">{getSpeciesTranslation(pet.species)}</span>
-            <span className="age">{getAgeText(pet.age)}</span>
+            <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-light)' }}>
+              {getAgeText(pet.age)}
+            </span>
           </div>
-          <div className="card-actions mt-1">
-            <Link to={`/pet/${pet.id}`} className="details-link-btn">
+        </CardBody>
+        
+        <CardFooter style={{ gap: '0.5rem' }}>
+          <Link to={`/pet/${pet.id}`} style={{ flex: 1, textDecoration: 'none' }}>
+            <Button variant="secondary" size="sm" style={{ width: '100%' }}>
               {t('cardDetailsBtn')}
-            </Link>
-            <button 
-              onClick={() => onToggleLike(pet.id)}
-              className={`like-btn ${pet.isLiked ? 'liked' : ''}`}
-              title={pet.isLiked ? t('cardLikeTitleRemove') : t('cardLikeTitleAdd')}
+            </Button>
+          </Link>
+          
+          <Button 
+            onClick={() => onToggleLike(pet.id)}
+            className={pet.isLiked ? 'liked' : ''}
+            variant={pet.isLiked ? 'primary' : 'outline'}
+            size="sm"
+            title={pet.isLiked ? t('cardLikeTitleRemove') : t('cardLikeTitleAdd')}
+          >
+            {pet.isLiked ? '❤️' : '🤍'}
+          </Button>
+
+          {onDelete && (
+            <Button 
+              onClick={() => setIsDeleteModalOpen(true)}
+              variant="danger"
+              size="sm"
+              title={t('delete')}
             >
-              {pet.isLiked ? '❤️' : '🤍'}
-            </button>
-          </div>
+              🗑️
+            </Button>
+          )}
+        </CardFooter>
+      </Card>
+
+      {/* Модальне вікно підтвердження видалення */}
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        title={t('deleteConfirmTitle')}
+      >
+        <p style={{ marginBottom: '1.5rem', lineHeight: '1.5' }}>
+          {t('deleteConfirmText', { name: <strong>{pet.name}</strong> })}
+        </p>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
+          <Button variant="secondary" size="sm" onClick={() => setIsDeleteModalOpen(false)}>
+            {t('cancel')}
+          </Button>
+          <Button variant="danger" size="sm" onClick={handleDeleteConfirm}>
+            {t('confirm')}
+          </Button>
         </div>
-      </div>
+      </Modal>
     </>
   );
-};
+}
 
 export default PetCard;

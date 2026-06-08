@@ -35,6 +35,9 @@ const translations = {
     filterLiked: "Улюблені",
     filterCats: "Коти",
     filterDogs: "Собаки",
+    galleryTitle: "Наші улюбленці",
+    emptyTitle: "Тваринок не знайдено 😢",
+    emptySubtitle: "Спробуйте змінити параметр фільтрації.",
     
     // Форма додавання
     addFormTitle: "Додати нового улюбленця",
@@ -80,6 +83,13 @@ const translations = {
     speciesParrot: "Папуга",
     speciesRabbit: "Кролик",
 
+    // Видалення
+    delete: "Видалити",
+    deleteConfirmTitle: "Видалити улюбленця? 🗑️",
+    deleteConfirmText: "Ви впевнені, що хочете видалити {name} з галереї?",
+    confirm: "Так, видалити",
+    cancel: "Скасувати",
+
     // Про застосунок сторінка
     aboutTitle: "Про застосунок Pet Gallery",
     aboutIntro: "Цей застосунок створено як фінальний проєкт в рамках курсу вивчення React.",
@@ -122,6 +132,9 @@ const translations = {
     filterLiked: "Liked",
     filterCats: "Cats",
     filterDogs: "Dogs",
+    galleryTitle: "Our Pets",
+    emptyTitle: "No pets found 😢",
+    emptySubtitle: "Try changing the filter parameters.",
     
     // Add Pet Form
     addFormTitle: "Add New Pet",
@@ -166,6 +179,13 @@ const translations = {
     speciesDog: "Dog",
     speciesParrot: "Parrot",
     speciesRabbit: "Rabbit",
+
+    // Deletion
+    delete: "Delete",
+    deleteConfirmTitle: "Delete pet? 🗑️",
+    deleteConfirmText: "Are you sure you want to delete {name} from the gallery?",
+    confirm: "Yes, delete",
+    cancel: "Cancel",
 
     // About Page
     aboutTitle: "About Pet Gallery App",

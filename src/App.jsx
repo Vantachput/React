@@ -6,6 +6,7 @@ import PetList from './pages/PetList';
 import PetDetails from './pages/PetDetails';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
+import UiKit from './pages/UiKit';
 
 // Джерело даних (масив об’єктів) з початковим станом лайків
 const initialPetsData = [
@@ -49,6 +50,10 @@ function App() {
     setPets(prevPets => [...prevPets, newPet]);
   };
 
+  const deletePet = (id) => {
+    setPets(prevPets => prevPets.filter(pet => pet.id !== id));
+  };
+
   const totalLikes = pets.filter(pet => pet.isLiked).length;
 
   return (
@@ -60,13 +65,16 @@ function App() {
         <Route index element={<Home />} />
         
         {/* Сторінка списку улюбленців */}
-        <Route path="pets" element={<PetList pets={pets} addPet={addPet} toggleLike={toggleLike} />} />
+        <Route path="pets" element={<PetList pets={pets} addPet={addPet} toggleLike={toggleLike} deletePet={deletePet} />} />
         
         {/* Динамічний маршрут сторінки деталей. :id - змінний параметр */}
-        <Route path="pet/:id" element={<PetDetails pets={pets} toggleLike={toggleLike} />} />
+        <Route path="pet/:id" element={<PetDetails pets={pets} toggleLike={toggleLike} deletePet={deletePet} />} />
         
         {/* Довідкова сторінка */}
         <Route path="about" element={<About />} />
+
+        {/* Сторінка документації UI Kit */}
+        <Route path="ui-kit" element={<UiKit />} />
 
         {/* Додаткове завдання: редирект (застарілий URL animals кидає на pets) */}
         <Route path="animals" element={<Navigate to="/pets" replace />} />
