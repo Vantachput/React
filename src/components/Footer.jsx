@@ -1,12 +1,14 @@
 import React from 'react';
+import { useSettings } from '../context/SettingsContext';
 
 const Footer = () => {
+  const { t } = useSettings();
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="app-footer">
-      <p>© {currentYear} Pet Gallery. Всі права захищені.</p>
-      <p>Створено для лабораторної роботи з React.</p>
+      <p>{t('footerRights', { year: currentYear })}</p>
+      <p>{t('footerCreated')}</p>
     </footer>
   );
 };

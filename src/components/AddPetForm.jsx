@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useSettings } from '../context/SettingsContext';
 
 const AddPetForm = ({ onAddPet }) => {
+  const { t } = useSettings();
   // Керовані поля форми через state
   const [name, setName] = useState('');
   const [species, setSpecies] = useState('Кіт');
@@ -44,38 +46,38 @@ const AddPetForm = ({ onAddPet }) => {
 
   return (
     <form className="add-pet-form" onSubmit={handleSubmit}>
-      <h3>Додати нового улюбленця</h3>
+      <h3>{t('addFormTitle')}</h3>
       
       <div className="form-group">
-        <label htmlFor="pet-name">Ім'я:</label>
+        <label htmlFor="pet-name">{t('formName')}</label>
         <input 
           type="text" 
           id="pet-name" 
           className="form-input"
           value={name} 
           onChange={(e) => setName(e.target.value)} 
-          placeholder="Наприклад, Муркотик"
+          placeholder={t('formNamePlaceholder')}
         />
       </div>
 
       <div className="form-row">
         <div className="form-group">
-          <label htmlFor="pet-species">Вид:</label>
+          <label htmlFor="pet-species">{t('formSpecies')}</label>
           <select 
             id="pet-species" 
             className="form-input"
             value={species} 
             onChange={(e) => setSpecies(e.target.value)}
           >
-            <option value="Кіт">Кіт</option>
-            <option value="Собака">Собака</option>
-            <option value="Папуга">Папуга</option>
-            <option value="Кролик">Кролик</option>
+            <option value="Кіт">{t('speciesCat')}</option>
+            <option value="Собака">{t('speciesDog')}</option>
+            <option value="Папуга">{t('speciesParrot')}</option>
+            <option value="Кролик">{t('speciesRabbit')}</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label htmlFor="pet-age">Вік (років):</label>
+          <label htmlFor="pet-age">{t('formAge')}</label>
           <input 
             type="number" 
             id="pet-age" 
@@ -89,20 +91,20 @@ const AddPetForm = ({ onAddPet }) => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="pet-photo">Посилання на фото (необов'язково):</label>
+        <label htmlFor="pet-photo">{t('formPhoto')}</label>
         <input 
           type="url" 
           id="pet-photo" 
           className="form-input"
           value={photoUrl} 
           onChange={(e) => setPhotoUrl(e.target.value)} 
-          placeholder="https://example.com/photo.jpg"
+          placeholder={t('formPhotoPlaceholder')}
         />
-        <small className="form-hint">Якщо порожньо, буде використано фото за замовчуванням для обраного виду.</small>
+        <small className="form-hint">{t('formPhotoHint')}</small>
       </div>
 
       <button type="submit" className="submit-btn" disabled={!name.trim()}>
-        Додати до галереї
+        {t('formSubmit')}
       </button>
     </form>
   );

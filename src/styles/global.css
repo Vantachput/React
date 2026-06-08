@@ -12,6 +12,16 @@
   --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --text-light: #a0a0a0;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.7);
+  --border-color: #333333;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -23,6 +33,11 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pet-card, .add-pet-form, .owner-card, .details-card, .api-state, .app-footer, .app-header {
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s, box-shadow 0.2s;
 }
 
 #root {
@@ -349,4 +364,33 @@ body {
   font-size: 0.9rem;
   color: var(--text-light);
   margin-bottom: 0.25rem;
+}
+
+/* Dark Mode Overrides */
+[data-theme='dark'] .form-input {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+[data-theme='dark'] .form-input:focus {
+  border-color: var(--primary-color);
+}
+
+[data-theme='dark'] select.form-input option {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] .api-loading {
+  background-color: #1e1e1e;
+}
+
+[data-theme='dark'] .api-error {
+  background-color: #2c1e1e;
+  color: #f87171;
+}
+
+[data-theme='dark'] .api-error .error-hint {
+  color: #fca5a5;
 }

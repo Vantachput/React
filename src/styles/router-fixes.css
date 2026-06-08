@@ -228,3 +228,41 @@ a.filter-btn, .filter-btn {
   line-height: 1.6;
   margin-bottom: 2rem;
 }
+
+/* Dark Mode specific tweaks for router elements */
+[data-theme='dark'] .pet-list-filters .filter-btn {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+[data-theme='dark'] .pet-list-filters .filter-btn:hover {
+  background-color: #3d3d3d;
+  border-color: #555;
+}
+
+[data-theme='dark'] .details-link-btn {
+  background-color: #2d2d2d;
+  color: var(--primary-color);
+}
+
+[data-theme='dark'] .details-link-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+[data-theme='dark'] .details-photo-container {
+  background-color: #1a1a1a;
+}
+
+[data-theme='dark'] .section-divider {
+  background: #333;
+}
+
+[data-theme='dark'] .about-content {
+  border-top-color: #333 !important;
+}
+
+[data-theme='dark'] .app-footer {
+  border-top-color: #222;
+}

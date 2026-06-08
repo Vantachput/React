@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PetGallery from '../components/PetGallery';
 import AddPetForm from '../components/AddPetForm';
+import { useSettings } from '../context/SettingsContext';
 
 const PetList = ({ pets, addPet, toggleLike }) => {
+  const { t } = useSettings();
   // Фільтрація тепер живе на сторінці списку, де вона потрібна
   const [filter, setFilter] = useState('all');
 
@@ -21,19 +23,19 @@ const PetList = ({ pets, addPet, toggleLike }) => {
         <button 
           className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
           onClick={() => setFilter('all')}
-        >Всі</button>
+        >{t('filterAll')}</button>
         <button 
           className={`filter-btn ${filter === 'liked' ? 'active' : ''}`}
           onClick={() => setFilter('liked')}
-        >Улюблені</button>
+        >{t('filterLiked')}</button>
         <button 
           className={`filter-btn ${filter === 'cats' ? 'active' : ''}`}
           onClick={() => setFilter('cats')}
-        >Коти</button>
+        >{t('filterCats')}</button>
         <button 
           className={`filter-btn ${filter === 'dogs' ? 'active' : ''}`}
           onClick={() => setFilter('dogs')}
-        >Собаки</button>
+        >{t('filterDogs')}</button>
       </nav>
 
       {filter === 'all' && <AddPetForm onAddPet={addPet} />}

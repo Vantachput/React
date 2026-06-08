@@ -1,9 +1,11 @@
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useSettings } from '../context/SettingsContext';
 
 const PetDetails = ({ pets, toggleLike }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t, getSpeciesTranslation, getAgeText } = useSettings();
 
   // Шукаємо тваринку по id (не забуваємо, що id з URL є рядком)
   const pet = pets.find(p => p.id === parseInt(id, 10));
@@ -12,10 +14,10 @@ const PetDetails = ({ pets, toggleLike }) => {
   if (!pet) {
     return (
       <div className="page-content not-found-page">
-        <h2>Помилка 😢</h2>
-        <p>Улюбленця з ідентифікатором "{id}" не знайдено в нашій базі.</p>
+        <h2>{t('detailsNotFoundTitle')}</h2>
+        <p>{t('detailsNotFoundText', { id })}</p>
         <button onClick={() => navigate('/pets')} className="submit-btn mt-1">
-          Повернутися до списку
+          {t('detailsBackToList')}
         </button>
       </div>
     );
@@ -26,14 +28,14 @@ const PetDetails = ({ pets, toggleLike }) => {
       <div className="details-header">
         {/* Додаткове завдання: кнопка повернутися назад (через Link) */}
         <Link to="/pets" className="back-link">
-          &larr; Назад до галереї
+          {t('detailsBack')}
         </Link>
         <button 
           onClick={() => toggleLike(pet.id)}
           className={`like-btn ${pet.isLiked ? 'liked' : ''}`}
-          title={pet.isLiked ? "Видалити з улюблених" : "Додати в улюблені"}
+          title={pet.isLiked ? t('cardLikeTitleRemove') : t('cardLikeTitleAdd')}
         >
-          {pet.isLiked ? '❤️ В улюблених' : '🤍 Додати в улюблені'}
+          {pet.isLiked ? t('detailsLikedBtn') : t('detailsLikeBtn')}
         </button>
       </div>
 
@@ -43,20 +45,23 @@ const PetDetails = ({ pets, toggleLike }) => {
         </div>
         <div className="details-info">
           <h1>{pet.name}</h1>
-          <p className="details-species"><strong>Вид:</strong> {pet.species}</p>
-          <p className="details-age"><strong>Вік:</strong> {pet.age} {pet.age === 1 ? 'рік' : 'роки/років'}</p>
+          <p className="details-species"><strong>{t('detailsSpecies')}</strong> {getSpeciesTranslation(pet.species)}</p>
+          <p className="details-age"><strong>{t('detailsAge')}</strong> {getAgeText(pet.age)}</p>
           
           <div className="details-description">
-            <h3>Про улюбленця:</h3>
+            <h3>{t('detailsAboutTitle')}</h3>
             <p>
-              Це детальна сторінка для <strong>{pet.name}</strong>. Цей чудовий представник виду {pet.species.toLowerCase()} 
-              шукає вашу увагу та любов! Знаходиться в системі під номером #{pet.id}.
+              {t('detailsDescriptionText', {
+                name: pet.name,
+                species: getSpeciesTranslation(pet.species).toLowerCase(),
+                id: pet.id
+              })}
             </p>
           </div>
           
           {/* Додаткове завдання: кнопка повернутися назад (через useNavigate) */}
           <button onClick={() => navigate('/pets')} className="submit-btn mt-2">
-            До списку
+            {t('detailsToListBtn')}
           </button>
         </div>
       </div>

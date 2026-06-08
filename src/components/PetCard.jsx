@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSettings } from '../context/SettingsContext';
 
 const PetCard = ({ pet, onToggleLike }) => {
+  const { t, getSpeciesTranslation, getAgeText } = useSettings();
+
   // Використовуємо фрагменти <>...</> згідно з вимогами
   return (
     <>
@@ -12,17 +15,17 @@ const PetCard = ({ pet, onToggleLike }) => {
         <div className="pet-info">
           <h3 className="pet-name">{pet.name}</h3>
           <div className="pet-details">
-            <span className="species">{pet.species}</span>
-            <span className="age">{pet.age} {pet.age === 1 ? 'рік' : 'років'}</span>
+            <span className="species">{getSpeciesTranslation(pet.species)}</span>
+            <span className="age">{getAgeText(pet.age)}</span>
           </div>
           <div className="card-actions mt-1">
             <Link to={`/pet/${pet.id}`} className="details-link-btn">
-              Детальніше
+              {t('cardDetailsBtn')}
             </Link>
             <button 
               onClick={() => onToggleLike(pet.id)}
               className={`like-btn ${pet.isLiked ? 'liked' : ''}`}
-              title={pet.isLiked ? "Видалити з улюблених" : "Додати в улюблені"}
+              title={pet.isLiked ? t('cardLikeTitleRemove') : t('cardLikeTitleAdd')}
             >
               {pet.isLiked ? '❤️' : '🤍'}
             </button>

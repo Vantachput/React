@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useSettings } from '../context/SettingsContext';
 
 const PetOwnersAPI = () => {
+  const { t } = useSettings();
   // 1. Стани інтерфейсу
   const [owners, setOwners] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,9 +42,9 @@ const PetOwnersAPI = () => {
   if (loading) {
     return (
       <section className="api-section">
-        <h2 className="page-title">Спільнота власників (із API)</h2>
+        <h2 className="page-title">{t('apiTitle')}</h2>
         <div className="api-state api-loading">
-          <p>Завантаження даних із сервера... ⏳</p>
+          <p>{t('apiLoading')}</p>
         </div>
       </section>
     );
@@ -52,10 +54,10 @@ const PetOwnersAPI = () => {
   if (error) {
     return (
       <section className="api-section">
-        <h2 className="page-title">Спільнота власників (із API)</h2>
+        <h2 className="page-title">{t('apiTitle')}</h2>
         <div className="api-state api-error">
-          <p>❌ Не вдалося завантажити дані: {error}</p>
-          <p className="error-hint">Перевірте підключення до мережі або URL ендпоінту.</p>
+          <p>{t('apiError', { error })}</p>
+          <p className="error-hint">{t('apiErrorHint')}</p>
         </div>
       </section>
     );
@@ -64,15 +66,15 @@ const PetOwnersAPI = () => {
   // Відображення стану Success (Дані завантажено)
   return (
     <section className="api-section">
-      <h2 className="page-title">Спільнота власників (із API)</h2>
+      <h2 className="page-title">{t('apiTitle')}</h2>
       <div className="owners-grid">
         {/* 5. Відображення через map() з ключем key */}
         {owners.slice(0, 6).map(owner => (
           <div key={owner.id} className="owner-card">
             <h4>{owner.name}</h4>
-            <p className="owner-detail"><strong>Місто:</strong> {owner.address.city}</p>
-            <p className="owner-detail"><strong>Email:</strong> {owner.email}</p>
-            <p className="owner-detail"><strong>Компанія:</strong> {owner.company.name}</p>
+            <p className="owner-detail"><strong>{t('apiCity')}</strong> {owner.address.city}</p>
+            <p className="owner-detail"><strong>{t('apiEmail')}</strong> {owner.email}</p>
+            <p className="owner-detail"><strong>{t('apiCompany')}</strong> {owner.company.name}</p>
           </div>
         ))}
       </div>
